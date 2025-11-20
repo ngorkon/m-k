@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- Initialize Syntax Highlighting ---
     hljs.highlightAll();
 
+    // --- A.R.C. Tab Switching Logic ---
     const tabLinks = document.querySelectorAll('.tab-link');
     const tabContents = document.querySelectorAll('.tab-content');
 
@@ -9,16 +12,58 @@ document.addEventListener('DOMContentLoaded', () => {
             const tabId = link.dataset.tab;
             tabLinks.forEach(item => item.classList.remove('active'));
             link.classList.add('active');
+
             tabContents.forEach(content => {
                 content.classList.toggle('active', content.id === tabId);
             });
         });
     });
 
+    // --- ENHANCED Interactive Timeline ---
     const timelineContainer = document.getElementById('project-timeline');
     if (timelineContainer) {
-        const items = new vis.DataSet([ { id: 1, content: 'Research', start: '2025-09-01', end: '2025-09-14', group: 1 }, { id: 2, content: 'Kinematic Model', start: '2025-09-15', end: '2025-10-10', group: 2 }, { id: 3, content: 'Control Loop', start: '2025-10-11', end: '2025-11-05', group: 2 }, { id: 4, content: 'Integration & Testing', start: '2025-11-06', end: '2025-11-18', group: 3 }, { id: 5, content: 'Delivery', start: '2025-11-19', end: '2025-11-22', group: 1 } ]);
-        const groups = new vis.DataSet([ {id: 1, content: 'Management'}, {id: 2, content: 'Development'}, {id: 3, content: 'QA'}, ]);
-        new vis.Timeline(timelineContainer, items, groups, { stack: false, width: '100%', height: '300px', margin: { item: 20 }, orientation: 'top', template: item => `<div class="vis-item-content">${item.content}</div>` });
+        // More detailed data items and milestones
+        const items = new vis.DataSet([
+            // Phase 1: Research
+            { id: 1, content: 'Research & Scoping', start: '2025-09-01', end: '2025-09-10', group: 'planning', className: 'vis-item-research' },
+            
+            // Phase 2: Core Development
+            { id: 2, content: 'Kinematic Model Dev', start: '2025-09-11', end: '2025-10-05', group: 'dev', className: 'vis-item-dev' },
+            { id: 3, content: 'Control Loop Logic', start: '2025-10-06', end: '2025-10-25', group: 'dev', className: 'vis-item-dev' },
+            { id: 7, content: 'Milestone: Core Logic Complete', start: '2025-10-25', type: 'point', group: 'dev', className: 'vis-item-milestone' },
+
+            // Phase 3: Refinement & Testing
+            { id: 4, content: 'PID Controller Tuning', start: '2025-10-26', end: '2025-11-10', group: 'qa', className: 'vis-item-qa' },
+            { id: 5, content: 'Integration & Bug Fixing', start: '2025-11-11', end: '2025-11-20', group: 'qa', className: 'vis-item-qa' },
+            
+            // Phase 4: Delivery
+            { id: 6, content: 'Final Report & Submission', start: '2025-11-21', end: '2025-11-25', group: 'planning', className: 'vis-item-delivery' },
+            { id: 8, content: 'Project Delivered', start: '2025-11-25', type: 'point', group: 'planning', className: 'vis-item-milestone-final' }
+        ]);
+        
+        // Updated descriptive groups
+        const groups = new vis.DataSet([
+            {id: 'planning', content: 'Planning & Delivery'},
+            {id: 'dev', content: 'Core Development'},
+            {id: 'qa', content: 'Testing & Refinement'},
+        ]);
+
+        // Enhanced styling options for the timeline
+        const options = {
+            stack: false,
+            width: '100%',
+            height: '350px',
+            margin: { item: 15, axis: 20 },
+            orientation: 'top',
+            showMajorLabels: false,
+            zoomable: false,
+            moveable: false,
+            timeAxis: {
+                scale: 'day',
+                step: 5
+            }
+        };
+        
+        new vis.Timeline(timelineContainer, items, groups, options);
     }
 });
