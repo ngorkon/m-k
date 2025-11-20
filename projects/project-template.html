@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Project Title - Ng'or Kon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/css/project-page.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
+    <script src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link href="https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header class="project-header">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">&larr; Back to All Projects</a>
+            <h1 class="project-title">Autonomous Robotic Arm Simulation</h1>
+            <p class="project-subtitle">A C++ based simulation applying inverse kinematics and control theory, delivered ahead of schedule using Agile methodologies.</p>
+            <div class="specs-box">
+                <div class="spec-item"><strong>Role:</strong> Lead Developer, Project Manager</div>
+                <div class="spec-item"><strong>Tech Stack:</strong> C++, Python, ROS</div>
+                <div class="spec-item"><strong>Duration:</strong> 12 Weeks</div>
+                <div class="spec-item"><strong>Outcome:</strong> <span class="status-success">Delivered - 3 Days Early</span></div>
+            </div>
+        </div>
+    </header>
+    <main class="project-main-content">
+        <div class="container">
+            <div class="arc-tabs-wrapper">
+                <div class="arc-tabs">
+                    <button class="tab-link active" data-tab="approach">📊 Approach</button>
+                    <button class="tab-link" data-tab="realization">🛠️ Realization</button>
+                    <button class="tab-link" data-tab="conclusion">✅ Conclusion</button>
+                </div>
+            </div>
+            <div class="tab-content-wrapper">
+                <div id="approach" class="tab-content active">
+                    <div class="content-section">
+                        <h3>Problem Statement</h3>
+                        <p>The goal was to simulate a 6-DOF robotic arm to validate a new control algorithm within a 12-week semester, with no budget for physical hardware. This required a robust physics simulation and an accurate kinematic model.</p>
+                    </div>
+                    <div class="content-section">
+                        <h3>Interactive Project Timeline</h3>
+                        <div id="project-timeline"></div>
+                    </div>
+                </div>
+                <div id="realization" class="tab-content">
+                    <div class="content-section">
+                        <h3>Code Spotlight: Inverse Kinematics</h3>
+                        <pre><code class="language-cpp">// Jacobian-based solver for inverse kinematics
+void RobotArm::calculateIK(Vector3 target) {
+    const float alpha = 0.1;
+    for (int i = 0; i < MAX_ITERATIONS; ++i) {
+        Vector3 currentPos = getEndEffectorPosition();
+        Vector3 error = target - currentPos;
+        if (error.length() < IK_THRESHOLD) {
+            return; // Success
+        }
+        Matrix3x3 jacobian = calculateJacobian();
+        Matrix3x3 pseudoInverse = jacobian.pseudoInverse();
+        Vector3 deltaTheta = pseudoInverse * error;
+        applyJointAngles(m_jointAngles + deltaTheta * alpha);
+    }
+}</code></pre>
+                    </div>
+                    <div class="content-section">
+                        <h3>Interactive 3D Model</h3>
+                        <model-viewer src="../assets/models/robotic-arm.glb" alt="A 3D model of a robotic arm" auto-rotate camera-controls shadow-intensity="1"></model-viewer>
+                    </div>
+                </div>
+                <div id="conclusion" class="tab-content">
+                    <div class="content-section">
+                        <h3>Results & Impact</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card"><div class="stat-value">98.5%</div><div class="stat-label">Path-Tracking Accuracy</div></div>
+                            <div class="stat-card"><div class="stat-value">-15%</div><div class="stat-label">Control Loop Jitter</div></div>
+                            <div class="stat-card"><div class="stat-value">+20%</div><div class="stat-label">Faster Debugging</div></div>
+                        </div>
+                    </div>
+                    <div class="content-section">
+                        <h3>Personal Reflection</h3>
+                        <p>This project was a phenomenal learning experience. The biggest takeaway was the trade-off between algorithmic complexity and real-time performance. While a more complex solver could yield slightly higher accuracy, the Jacobian-based method provided the best balance for this application. In the future, I would explore implementing a Kalman filter to further smooth sensor data before it enters the control loop.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="project-footer"><p>&copy; 2025 Ng'or Kon. All rights reserved.</p></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="../assets/js/project-page.js"></script>
+</body>
+</html>
