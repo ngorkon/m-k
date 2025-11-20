@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: Project Title - Ng'or Kon</title>
+    <title>Case Study: Robotic Arm Simulation - Ng'or Kon</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+
+    <!-- Correct relative path to the stylesheet -->
     <link rel="stylesheet" href="../assets/css/project-page.css">
+
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
     <script src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
     <link href="https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
@@ -15,6 +19,7 @@
 <body>
     <header class="project-header">
         <div class="container">
+            <!-- Correct relative path back to the main page -->
             <a href="../index.html#projects" class="back-link">&larr; Back to All Projects</a>
             <h1 class="project-title">Autonomous Robotic Arm Simulation</h1>
             <p class="project-subtitle">A C++ based simulation applying inverse kinematics and control theory, delivered ahead of schedule using Agile methodologies.</p>
@@ -35,6 +40,7 @@
                     <button class="tab-link" data-tab="conclusion">✅ Conclusion</button>
                 </div>
             </div>
+
             <div class="tab-content-wrapper">
                 <div id="approach" class="tab-content active">
                     <div class="content-section">
@@ -46,6 +52,7 @@
                         <div id="project-timeline"></div>
                     </div>
                 </div>
+
                 <div id="realization" class="tab-content">
                     <div class="content-section">
                         <h3>Code Spotlight: Inverse Kinematics</h3>
@@ -67,16 +74,27 @@ void RobotArm::calculateIK(Vector3 target) {
                     </div>
                     <div class="content-section">
                         <h3>Interactive 3D Model</h3>
+                        <!-- This line is correct, but the file it points to is missing -->
                         <model-viewer src="../assets/models/robotic-arm.glb" alt="A 3D model of a robotic arm" auto-rotate camera-controls shadow-intensity="1"></model-viewer>
                     </div>
                 </div>
+
                 <div id="conclusion" class="tab-content">
                     <div class="content-section">
                         <h3>Results & Impact</h3>
                         <div class="stats-grid">
-                            <div class="stat-card"><div class="stat-value">98.5%</div><div class="stat-label">Path-Tracking Accuracy</div></div>
-                            <div class="stat-card"><div class="stat-value">-15%</div><div class="stat-label">Control Loop Jitter</div></div>
-                            <div class="stat-card"><div class="stat-value">+20%</div><div class="stat-label">Faster Debugging</div></div>
+                            <div class="stat-card">
+                                <div class="stat-value">98.5%</div>
+                                <div class="stat-label">Path-Tracking Accuracy</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">-15%</div>
+                                <div class="stat-label">Control Loop Jitter</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">+20%</div>
+                                <div class="stat-label">Faster Debugging</div>
+                            </div>
                         </div>
                     </div>
                     <div class="content-section">
@@ -87,8 +105,12 @@ void RobotArm::calculateIK(Vector3 target) {
             </div>
         </div>
     </main>
-    <footer class="project-footer"><p>&copy; 2025 Ng'or Kon. All rights reserved.</p></footer>
+    <footer class="project-footer">
+        <p>&copy; 2025 Ng'or Kon. All rights reserved.</p>
+    </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- Correct relative path to the project-specific JS file -->
     <script src="../assets/js/project-page.js"></script>
 </body>
 </html>
